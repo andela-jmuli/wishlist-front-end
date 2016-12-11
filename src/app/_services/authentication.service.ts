@@ -7,9 +7,10 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
-
+  // constructor initializes Http object
   constructor(private http: Http) { }
 
+  // login method to authenticate users and provide token
   login(username: string, password: string){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');

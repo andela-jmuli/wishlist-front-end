@@ -4,16 +4,15 @@ import { Observable } from 'rxjs/Observable';
 import { Bucketlist } from '../models/bucketlist';
 
 @Injectable()
-export class UsersService {
+export class BucketlistService {
 
   constructor(private http: Http) { }
-  
 
-  create_bucketlist(bucketlist: Bucketlist){
+  create(bucketlist: Bucketlist){
     return this.http.post('https://wishlistcp.herokuapp.com/bucketlists/', bucketlist, this.jwt()).map((response: Response) => response.json());
   }
   get_all_bucketlists(){
-    return this.http.get('https://wishlistcp.herokuapp.com/bucketlists/', this.jwt()).map((response: Response) => response.json());
+    return this.http.get('https://wishlistcp.herokuapp.com/bucketlists/', this.jwt()).map((response: Response) => <Bucketlist[]>response.json());
   }
   get_single_bucketlist(id: number){
     return this.http.get('https://wishlistcp.herokuapp.com/bucketlists/'+ id, this.jwt()).map((response: Response) => response.json());
@@ -30,7 +29,7 @@ export class UsersService {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.auth_token){
       let headers = new Headers({ 'Authorization': 'Token '+ currentUser.auth_token });
-      headers.append('Access-Control-Allow-Origin', '*');
+      headers.append('Accept', 'application/json');
       return new RequestOptions({ headers: headers});
     }
   }
