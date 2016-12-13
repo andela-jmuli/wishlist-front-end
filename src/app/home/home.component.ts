@@ -11,11 +11,11 @@ import { UsersService } from '../_services/index'
 })
 export class HomeComponent implements OnInit {
   currentUser: User;
-  users: User[] = [];
-
+  username: string;
 
   constructor(private userService: UsersService) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.username = JSON.parse(localStorage.getItem('username'));
   }
 
   ngOnInit() {
