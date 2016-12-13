@@ -26,26 +26,21 @@ export class BucketlistDetailComponent implements OnInit {
                 this.bucketlist = bucketlist;
                 this.name = bucketlist.name;
                 this.description = bucketlist.description;
-                this.items = bucketlist.bucketlist_items;
-                this.bucketlistId = bucketlist.id;
-              }, 
+                this.items = bucketlist.bucketlist_items;  
+              },           
     );
   }
 
   updateBucketlist(bucketlist){
     this.bucketlistService.update_bucketlist(this.bucketlist).subscribe();
   }
-  createItem(){
+
+  createItem(bucketlistId: number){
     this.loading = true;
-    this.itemService.create_item(this.bucketlistId, this.model)
+    this.itemService.create_item(bucketlistId, this.model)
     .subscribe(
       error => {
         this.loading = false;
       });
   }
-  
-  deleteItem(bucketlist, item){
-    this.itemService.delete_item(bucketlist.id, item.id).subscribe();
-  }
-
 }

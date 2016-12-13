@@ -16,7 +16,7 @@ export class ItemsService {
   }
 
   delete_item(bucketlist_id: number, itemId: number){
-    return this.http.post(this.dataUrl+bucketlist_id+'/items/'+itemId, this.jwt()).map((response: Response) => response.json());
+    return this.http.delete(this.dataUrl+bucketlist_id+'/items/'+itemId + '/', this.jwt()).map((response: Response) => response.json());
   }
 
 
@@ -24,7 +24,7 @@ export class ItemsService {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.auth_token){
       let headers = new Headers({ 'Authorization': 'Token '+ currentUser.auth_token });
-      headers.append('Accept', 'application/json');
+      headers.append('Content-Type', 'application/json');
       return new RequestOptions({ headers: headers});
     }
   }
