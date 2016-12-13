@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Bucketlist } from '../models/bucketlist';
+import { Bucketlist, Items} from '../models/bucketlist';
 
 @Injectable()
 export class ItemsService {
@@ -11,8 +11,8 @@ export class ItemsService {
     this.dataUrl = 'https://wishlistcp.herokuapp.com/bucketlists/';
    }
 
-  create_item(bucketlist_id: number, item_name){
-    return this.http.post(this.dataUrl+bucketlist_id+'/items/', item_name, this.jwt()).map((response: Response) => response.json());
+  create_item(bucketlist_id: number, item: Items){
+    return this.http.post(this.dataUrl+bucketlist_id+'/items/', item, this.jwt()).map((response: Response) => response.json());
   }
 
   delete_item(bucketlist_id: number, itemId: number){

@@ -4,7 +4,7 @@ export class Bucketlist {
     description: string;
     date_created: string;
     date_modified: string;
-    items = new Array<Items>();
+    bucketlist_items = new Array<Items>();
 }
 
 

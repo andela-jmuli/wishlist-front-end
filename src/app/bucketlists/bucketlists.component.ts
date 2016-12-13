@@ -12,6 +12,7 @@ export class BucketlistsComponent implements OnInit {
   model: any = {};
   loading = false;
   bucketlists: Bucketlist[];
+  errorMessage: string;
 
   constructor(
     private router: Router,
@@ -31,8 +32,7 @@ export class BucketlistsComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.bucketlistservice.get_all_bucketlists().subscribe(bucketlists => this.bucketlists = bucketlists,
-    );
+    this.bucketlistservice.get_all_bucketlists().subscribe(bucketlists => this.bucketlists = bucketlists, error => this.errorMessage = <any>error);
   }
 
 }
