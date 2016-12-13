@@ -15,8 +15,8 @@ export class ItemsService {
     return this.http.post(this.dataUrl+bucketlist_id+'/items/', item_name, this.jwt()).map((response: Response) => response.json());
   }
 
-  delete_item(bucketlist_id: number, item_id: number){
-    return this.http.post(this.dataUrl+bucketlist_id+'/items/'+item_id, this.jwt()).map((response: Response) => response.json());
+  delete_item(bucketlist_id: number, itemId: number){
+    return this.http.post(this.dataUrl+bucketlist_id+'/items/'+itemId, this.jwt()).map((response: Response) => response.json());
   }
 
 

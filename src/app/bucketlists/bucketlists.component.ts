@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BucketlistService } from '../_services/index'
 import { Router } from '@angular/router';
+import { Bucketlist } from '../models/bucketlist'
 
 @Component({
   selector: 'app-bucketlists',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class BucketlistsComponent implements OnInit {
   model: any = {};
   loading = false;
+  bucketlists: Bucketlist[];
 
   constructor(
     private router: Router,
@@ -21,7 +23,7 @@ export class BucketlistsComponent implements OnInit {
     this.bucketlistservice.create(this.model)
     .subscribe(
       data => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/bucketlists']);
       },
       error => {
         this.loading = false;
@@ -29,6 +31,8 @@ export class BucketlistsComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.bucketlistservice.get_all_bucketlists().subscribe(bucketlists => this.bucketlists = bucketlists,
+    );
   }
 
 }
