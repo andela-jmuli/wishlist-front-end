@@ -13,6 +13,7 @@ export class BucketlistsComponent implements OnInit {
   loading = false;
   bucketlists: Bucketlist[];
   errorMessage: string;
+  BucketlistId: number;
 
   constructor(
     private router: Router,
@@ -29,6 +30,17 @@ export class BucketlistsComponent implements OnInit {
       error => {
         this.loading = false;
       });
+  }
+  deleteBucketlist(bucketlistId){
+    this.loading = true;
+    this.bucketlistservice.delete_bucketlist(bucketlistId).subscribe(
+      data => {
+        this.router.navigate(['/bucketlists']);
+      },
+      error => {
+        this.loading = false;
+      }
+    );
   }
   
   ngOnInit() {

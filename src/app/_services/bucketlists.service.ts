@@ -22,7 +22,7 @@ export class BucketlistService {
     return this.http.put('https://wishlistcp.herokuapp.com/bucketlists/'+ bucketlist.id, bucketlist, this.jwt()).map((response: Response) => response.json());
   }
   delete_bucketlist(id: number){
-    return this.http.delete('https://wishlistcp.herokuapp.com/bucketlists/'+ id, this.jwt()).map((response: Response) => response.json());
+    return this.http.delete('https://wishlistcp.herokuapp.com/bucketlists/'+ id + '/', this.jwt()).map((response: Response) => response.json());
   }
 
   // helper method for auth
