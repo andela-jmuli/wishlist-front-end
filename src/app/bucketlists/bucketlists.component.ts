@@ -36,7 +36,6 @@ export class BucketlistsComponent implements OnInit {
   }
 
   deleteBucketlist(bucketlistId){
-    console.log(bucketlistId)
     this.loading = true;
     this.bucketlistservice.delete_bucketlist(bucketlistId).subscribe(
       
@@ -49,6 +48,8 @@ export class BucketlistsComponent implements OnInit {
       }
     );
   }
+
+
   updateBucketlist(bucketlistId, model){
     console.log(bucketlistId)
     console.log(model)

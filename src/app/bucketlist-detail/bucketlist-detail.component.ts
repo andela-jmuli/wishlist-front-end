@@ -36,8 +36,13 @@ export class BucketlistDetailComponent implements OnInit {
     );
   }
   
-  // editBucketlist(){
-  //   EmitterService.get(this.editId).emit(this.bucketlist)
-  // }
+  createItem(bucketlistId: number){
+    this.loading = true;
+    this.itemService.create_item(bucketlistId, this.model)
+    .subscribe(
+      error => {
+        this.loading = false;
+      });
+  }
 
 }

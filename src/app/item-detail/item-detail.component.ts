@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Rx';
 })
 export class ItemDetailComponent implements OnInit {
   @Input() item: Items;
+  @Input() i: number;
   @Input() bucketlistId: number;
   model: any = {};
   itemName: string;
@@ -29,41 +30,16 @@ export class ItemDetailComponent implements OnInit {
     this.itemId = this.item.id
   }
 
-  editItem(){
-    EmitterService.get(this.editId).emit(this.item)
-  }
-  updateItem(bucketlistId, itemId, model){
+  updateItem(bucketlistId, itemId, itemName){
     console.log(bucketlistId)
-    console.log(model)
-    this.itemService.update_item(this.bucketlistId, this.itemId, this.model).subscribe(
+    console.log(this.itemName)
+    // console.log(model)
+    this.itemService.update_item(this.bucketlistId, this.itemId, itemName).subscribe(
       error => {
         console.log(error)
       }
     );
   }
-
-
-  submitItem(bucketlistId: number, itemId: number){
-    let itemOperation:Observable<Items[]>;
-
-    if(!this.editing){
-      itemOperation = this.itemService.create_item(this.bucketlistId, this.model)
-      
-    }
-    else{
-      console.log(this.model)
-      itemOperation = this.itemService.update_item(this.bucketlistId, this.itemId, this.model)
-    }
-    itemOperation.subscribe(
-      items => {
-        if(this.editing) this.editing = !this.editing;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
 
   ngOnChanges(){
     EmitterService.get(this.editId).subscribe((item: Items) =>{

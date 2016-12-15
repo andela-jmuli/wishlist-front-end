@@ -1,8 +1,28 @@
-<div class="col-md-6 col-md-offset-3">
-  <h1>
-    Hello {{ currentUser.username }}!
-  </h1>
+<div class="row-expanded">
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <div class="title">Wishlist</div>
+  <div class="top-link">
+      <ul class="top-btns">
+          <li><h3 class="salute">Hi {{ username }}!</h3></li>
+          <li><a [routerLink]="['login']">Logout</a></li>
+      </ul>
+  </div>
+</div>
+</div>
+
+<div class="row-expanded">
+<div class="large-12 small-6 columns">
   <p> You're logged in!!</p>
   
-  <p><a [routerLink]="['/login']">Logout</a></p>
+  <p></p>
+</div>
+</div>
+<div class="row-expanded">
+<div class="large-12 small-6 columns">
+  <div class="foot">
+    
+  </div>
+
+
+</div>
 </div>
