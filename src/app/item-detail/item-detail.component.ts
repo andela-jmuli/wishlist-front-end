@@ -33,7 +33,6 @@ export class ItemDetailComponent implements OnInit {
   updateItem(bucketlistId, itemId, itemName){
     console.log(bucketlistId)
     console.log(this.itemName)
-    // console.log(model)
     this.itemService.update_item(this.bucketlistId, this.itemId, itemName).subscribe(
       error => {
         console.log(error)
