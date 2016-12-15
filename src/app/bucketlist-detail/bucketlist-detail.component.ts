@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BucketlistService, ItemsService } from '../_services/index';
+import { BucketlistService, ItemsService, EmitterService } from '../_services/index';
 import { Bucketlist, Items } from '../models/bucketlist'
 
 @Component({
@@ -11,11 +11,16 @@ import { Bucketlist, Items } from '../models/bucketlist'
 export class BucketlistDetailComponent implements OnInit {
   model: any = {};
   loading = false;
-  bucketlist: Bucketlist;
-  items: Items[];
+  @Input() bucketlist: Bucketlist;
+  item_data: Items[];
   name: string;
   description: string;
   bucketlistId: number;
+
+  @Input() editId: string;
+
+  private itemModel = new Items();
+  private editing = false;
 
   constructor(private router: ActivatedRoute, private bucketlistService: BucketlistService, private itemService: ItemsService ) { }
 
@@ -26,21 +31,13 @@ export class BucketlistDetailComponent implements OnInit {
                 this.bucketlist = bucketlist;
                 this.name = bucketlist.name;
                 this.description = bucketlist.description;
-                this.items = bucketlist.bucketlist_items;  
+                this.item_data = bucketlist.bucketlist_items;  
               },           
     );
   }
+  
+  // editBucketlist(){
+  //   EmitterService.get(this.editId).emit(this.bucketlist)
+  // }
 
-  updateBucketlist(bucketlist){
-    this.bucketlistService.update_bucketlist(this.bucketlist).subscribe();
-  }
-
-  createItem(bucketlistId: number){
-    this.loading = true;
-    this.itemService.create_item(bucketlistId, this.model)
-    .subscribe(
-      error => {
-        this.loading = false;
-      });
-  }
 }

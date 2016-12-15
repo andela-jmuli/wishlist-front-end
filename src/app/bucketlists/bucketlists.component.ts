@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { BucketlistService } from '../_services/index'
 import { Router } from '@angular/router';
 import { Bucketlist } from '../models/bucketlist'
+import { NgForm } from '@angular/forms'
 
 @Component({
   selector: 'app-bucketlists',
@@ -12,8 +13,10 @@ export class BucketlistsComponent implements OnInit {
   model: any = {};
   loading = false;
   bucketlists: Bucketlist[];
+  bucketlist: Bucketlist;
   errorMessage: string;
   BucketlistId: number;
+  name: string
 
   constructor(
     private router: Router,
@@ -31,14 +34,27 @@ export class BucketlistsComponent implements OnInit {
         this.loading = false;
       });
   }
+
   deleteBucketlist(bucketlistId){
+    console.log(bucketlistId)
     this.loading = true;
     this.bucketlistservice.delete_bucketlist(bucketlistId).subscribe(
+      
       data => {
         this.router.navigate(['/bucketlists']);
       },
       error => {
         this.loading = false;
+        console.log(error)
+      }
+    );
+  }
+  updateBucketlist(bucketlistId, model){
+    console.log(bucketlistId)
+    console.log(model)
+    this.bucketlistservice.update_bucketlist(bucketlistId, model).subscribe(
+      error => {
+        console.log(error)
       }
     );
   }
@@ -48,4 +64,4 @@ export class BucketlistsComponent implements OnInit {
   }
 
 }
-
+// itemOperation = this.itemService.update_item(this.bucketlistId, this.itemId, this.model)

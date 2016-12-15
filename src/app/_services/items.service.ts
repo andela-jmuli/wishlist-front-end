@@ -12,7 +12,10 @@ export class ItemsService {
    }
 
   create_item(bucketlist_id: number, item: Items){
-    return this.http.post(this.dataUrl+bucketlist_id+'/items/', item, this.jwt()).map((response: Response) => response.json());
+    return this.http.post(this.dataUrl+bucketlist_id+'/items/', JSON.stringify(item), this.jwt()).map((response: Response) => response.json());
+  }
+  update_item(bucketlist_id: number, itemId: number, item_name: string){
+    return this.http.put(this.dataUrl+bucketlist_id+'/items/' + itemId+ '/', item_name, this.jwt()).map((response: Response) => response.json());
   }
 
   delete_item(bucketlist_id: number, itemId: number){
