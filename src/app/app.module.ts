@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
-import { AuthenticationService, UsersService, BucketlistService, ItemsService } from './_services/index';
+import { AuthenticationService, UsersService, BucketlistService, ItemsService, AuthGuard } from './_services/index';
 import { BucketlistsComponent } from './bucketlists/bucketlists.component';
 import { BucketlistDetailComponent } from './bucketlist-detail/bucketlist-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
@@ -20,7 +20,7 @@ import { ItemDetailComponent } from './item-detail/item-detail.component';
     HttpModule,
     routing
   ],
-  providers: [AuthenticationService, UsersService, BucketlistService, ItemsService],
+  providers: [AuthenticationService, AuthGuard, UsersService, BucketlistService, ItemsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

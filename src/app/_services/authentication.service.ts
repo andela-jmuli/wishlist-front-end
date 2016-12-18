@@ -7,8 +7,13 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class AuthenticationService {
+
+  private authenticated: boolean = false;
+  
   // constructor initializes Http object
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.authenticated = !!window.localStorage.getItem('currentUser');
+   }
 
   // login method to authenticate users and provide token
   login(username: string, password: string){
@@ -20,6 +25,7 @@ export class AuthenticationService {
         if (user && user.auth_token){
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('username', JSON.stringify(username));
+          this.authenticated = true;
         }
       }
     );
@@ -27,6 +33,11 @@ export class AuthenticationService {
 
   logout(){
     localStorage.removeItem('currentUser')
+    localStorage.removeItem('username')
+    this.authenticated = false;
+  }
+  isAuthenticated(): boolean{
+    return this.authenticated;
   }
 
 }
