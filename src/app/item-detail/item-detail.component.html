@@ -1,5 +1,6 @@
 <div class="panel panel-default">
             <label>Name</label><div class="panel-heading">{{itemName}}</div>
+            <label>Done</label><div class="panel-body">{{is_done}}</div>
             <div class="panel-footer">
                 
             <button class="btn btn-info" id="{{bucketlistId}}" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i"><span class="glyphicon glyphicon-edit"></span></button>
@@ -22,6 +23,8 @@
     <form class="form-group">
         <label for="recipient-name" class="form-control-label">Name:</label>
         <input type="text" class="form-control" placeholder="Item Name" [(ngModel)]="itemName" name="item_name" #item_name="ngModel" required><br><br>
+        <label>
+        <input type="checkbox" name="is_done"  [(ngModel)]="is_done">Is Done</label>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary" (click)='updateItem(bucketlistId, itemId, item_name.value)'>Update </button>
     </form>

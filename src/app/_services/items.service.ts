@@ -15,9 +15,8 @@ export class ItemsService {
     return this.http.post(this.dataUrl+bucketlist_id+'/items/', JSON.stringify(item), this.jwt()).map((response: Response) => response.json());
   }
   
-  update_item(bucketlist_id: number, itemId: number, itemName: string){
-    console.log(itemName)
-    let data = JSON.stringify({"item_name": itemName})
+  update_item(bucketlist_id: number, itemId: number, itemName: string, is_done:boolean){
+    let data = JSON.stringify({"item_name": itemName, "is_done": is_done})
     return this.http.put(this.dataUrl+bucketlist_id+'/items/' + itemId+ '/', data, this.jwt()).map((response: Response) => response.json());
   }
 
