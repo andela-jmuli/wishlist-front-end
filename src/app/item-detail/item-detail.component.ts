@@ -17,6 +17,7 @@ export class ItemDetailComponent implements OnInit {
   itemName: string;
   itemId: number;
   loading = false;
+  is_done: boolean;
 
   @Input() editId: string;
 
@@ -28,12 +29,12 @@ export class ItemDetailComponent implements OnInit {
   ngOnInit() {
     this.itemName = this.item.item_name;
     this.itemId = this.item.id
+    this.is_done = this.item.is_done
   }
 
-  updateItem(bucketlistId, itemId, itemName){
-    console.log(bucketlistId)
-    console.log(this.itemName)
-    this.itemService.update_item(this.bucketlistId, this.itemId, itemName).subscribe(
+  updateItem(bucketlistId, itemId, itemName, is_done){
+    
+    this.itemService.update_item(this.bucketlistId, this.itemId, itemName, this.is_done).subscribe(
       error => {
         console.log(error)
       }

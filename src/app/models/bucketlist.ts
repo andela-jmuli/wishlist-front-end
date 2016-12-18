@@ -13,6 +13,6 @@ export class Items {
     item_name: string;
     date_created: string;
     date_modified: string;
-    is_done: string;
+    is_done: boolean;
 
 }
