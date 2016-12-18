@@ -1,28 +1,22 @@
-<div class="row-expanded">
-<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-  <div class="title">Wishlist</div>
-  <div class="top-link">
-      <ul class="top-btns">
-          <li><h3 class="salute">Hi {{ username }}!</h3></li>
-          <li><a [routerLink]="['login']">Logout</a></li>
-      </ul>
-  </div>
-</div>
-</div>
 
-<div class="row-expanded">
-<div class="large-12 small-6 columns">
-  <p> You're logged in!!</p>
-  
-  <p></p>
+<!--Mask-->
+<div class="view">
+    <!--Intro content-->
+    <div class="full-bg-img flex-center">
+        <ul>
+            <li>
+                <h1 class="h1-responsive">Wishlist helps you keep track of your bucketlists!</h1></li>
+                <li><h3 class="salute">Hi {{ username }}, You're logged in!</h3></li>
+            <li>
+                <p>Never lose track of that one special moment</p>
+            </li>
+            <li>
+                <a [routerLink]="['bucketlists']" class="btn btn-primary btn-lg">Create Bucketlists</a>
+                <a [routerLink]="['login']" class="btn btn-default btn-lg">Logout</a>
+            
+            </li>
+        </ul>
+    </div>
+    <!--/Intro content-->
 </div>
-</div>
-<div class="row-expanded">
-<div class="large-12 small-6 columns">
-  <div class="foot">
-    
-  </div>
-
-
-</div>
-</div>
+<!--/.Mask-->

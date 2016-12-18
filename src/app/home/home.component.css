@@ -1,46 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Pacifico');
-
-html {
+html,
+body,
+.view {
     height: 100%;
     width: 100%;
-    font-size: 62.5%;
-}
-h1,
-h2,
-h3,
-h4,
-h5 {
-    font-family: 'Josefin Sans', sans-serif;
-}
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
-.title{
-    font-family: 'Pacifico', cursive;
-    font-size: x-large;
 }
 
-
-.top-link{
-    float: right;
-}
-.top-btns li{
-    list-style-type: none;
-    display: inline-block;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: x-large;
-}
-.salute{
-    padding-right: 2%;
-}
-.foot{
-position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #0a0a0a;
-  text-align: center;
-}
+/*.view {
+    background: url("./assets/resources/images/landing.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}*/

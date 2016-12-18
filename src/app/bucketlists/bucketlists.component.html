@@ -15,31 +15,16 @@
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">Submit</button>
             <img *ngIf="loading" src="http://loading.io/loader/?use=eyJzaXplIjo2MCwic3BlZWQiOjEsImNiayI6IiNmZmZmZmYiLCJjMSI6IiMwMGIyZmYiLCJjMiI6IjEyIiwiYzMiOiI3IiwiYzQiOiIyMCIsImM1IjoiNSIsImM2IjoiMzAiLCJ0eXBlIjoiZGVmYXVsdCJ9" />
-            <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+            <a [routerLink]="['/']" class="btn btn-link">Back Home</a>
         </div>
     </form>
 </div>
 
 <div class="buck-body">
             <table class="table" *ngIf="bucketlists">
-                <thead>
-                    <tr>
-                        <td>Name</td>
-                        <td>Description</td>
-                        
-                    </tr>
-                </thead>
                 <tbody>
                     <tr *ngFor="let bucketlist of bucketlists; let i = index">
-                        <td><a [routerLink]="['/bucketlists', bucketlist.id]">{{bucketlist.name}}</a></td>
-                        <td>{{bucketlist.description}}</td>
-                    <img *ngIf="loading" src="http://loading.io/loader/?use=eyJzaXplIjo2MCwic3BlZWQiOjEsImNiayI6IiNmZmZmZmYiLCJjMSI6IiMwMGIyZmYiLCJjMiI6IjEyIiwiYzMiOiI3IiwiYzQiOiIyMCIsImM1IjoiNSIsImM2IjoiMzAiLCJ0eXBlIjoiZGVmYXVsdCJ9" />    
-        
-        <button [disabled]="loading" class="btn btn-danger" (click)='deleteBucketlist(bucketlist.id)'><span class="glyphicon glyphicon-remove"></span></button> <br><br>
-
-        <button class="btn btn-info" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i"><span class="glyphicon glyphicon-edit"></span></button> <br><br>
-
-
+                
                     <!-- Update Bucketlist Modal -->
                     <div class="modal fade" [id]="'UpdateModal' + i" role="dialog">
                     <div class="modal-dialog" >
@@ -56,6 +41,7 @@
                             <input type="text" class="form-control" [ngModel] = "bucketlist.name" name="name" #name="ngModel" required /><br><br>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" (click)='updateBucketlist(bucketlist.id, name.value)'>Update </button>
+                        
                         </form>
                         </div>
                     
@@ -66,4 +52,28 @@
                 </tbody>
             </table>
             <p *ngIf="bucketlist && bucketlists.length==0"> You got no bucketlists mate!</p>
+        </div>
+
+        <div class="row"  *ngIf="bucketlists">
+            <!--First columnn-->
+        <div class="col-md-3" *ngFor="let bucketlist of bucketlists; let i = index">
+            <!--Card-->
+            <div class="card hoverable">
+
+                <!--Card content-->
+                <div class="card-block text-xs-center">
+                    <!--Title-->
+                    <h4 class="card-title"><a [routerLink]="['/bucketlists', bucketlist.id]">{{bucketlist.name}}</a></h4>
+                    <hr>
+                    <!--Text-->
+                    <p class="card-text">{{bucketlist.description}}</p>
+                    <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id)'>Delete</button>
+                    <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i">Update</button>
+
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+        </div>
         </div>
