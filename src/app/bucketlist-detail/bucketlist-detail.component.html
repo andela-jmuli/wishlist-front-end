@@ -17,7 +17,7 @@
 
 <div class="panel-body">
     <p *ngIf="item_data?.length < 1">You have no Items for this bucketlist mate!</p>
-
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
     <form (ngSubmit)="createItem(bucketlist.id)">
             <div class="form-group">
                 <div class="input-group">

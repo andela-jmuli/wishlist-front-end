@@ -16,9 +16,11 @@ export class BucketlistDetailComponent implements OnInit {
   model: any = {};
   loading = false;
   item_data: Items[];
+  responseItems: string
   name: string;
   description: string;
   bucketlistId: number;
+  errorMessage: string;
 
   maxSize: number = 10;
   directionLinks: boolean = true;
@@ -55,8 +57,13 @@ export class BucketlistDetailComponent implements OnInit {
     this.loading = true;
     this.itemService.create_item(bucketlistId, this.model)
     .subscribe(
+      data => {
+        this.responseItems = data;
+        this.item_data.push(data)
+      },
       error => {
-        this.loading = false;
+        console.log(error.json().item_name[0]);
+        this.errorMessage = error.json().item_name[0];
       });
   }
 

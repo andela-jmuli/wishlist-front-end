@@ -19,7 +19,7 @@ export class AuthenticationService {
   login(username: string, password: string){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('https://wishlistcp.herokuapp.com/auth/login/', JSON.stringify({username: username, password: password}), { headers: headers}).map(
+    return this.http.post('https://secret-ridge-68835.herokuapp.com/auth/login/', JSON.stringify({username: username, password: password}), { headers: headers}).map(
       (response: Response) => {
         let user = response.json();
         if (user && user.auth_token){
