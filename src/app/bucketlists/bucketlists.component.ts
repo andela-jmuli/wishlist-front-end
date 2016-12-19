@@ -65,10 +65,11 @@ export class BucketlistsComponent implements OnInit {
       });
   }
 
-  updateBucketlist(bucketlistId, model){
+  updateBucketlist(bucketlistId, model, index){
     this.bucketlistservice.update_bucketlist(bucketlistId, model).subscribe(
       data => {
-        console.log(data);
+        
+        this.bucketlists.splice(index, 1, data);   
       },
       error => {
         console.log(error.json());
@@ -81,7 +82,7 @@ export class BucketlistsComponent implements OnInit {
   deleteBucketlist(bucketlistId, index){
     this.bucketlistservice.delete_bucketlist(bucketlistId).subscribe(
       data => {
-        this.bucketlists.splice(index, 1);
+        this.bucketlists.splice(index, 1); 
         this.buck = data;
       },
       error => {
