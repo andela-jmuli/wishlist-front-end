@@ -52,8 +52,15 @@ export class BucketlistsComponent implements OnInit {
         this.bucketlists.push(data)
       },
       error => {
-        console.log(error.json().name[0]);
-        this.errorMessage = error.json().name[0];
+        let errorOnBucketlist = error.json();
+        if (errorOnBucketlist.hasOwnProperty('name')){
+          console.log(errorOnBucketlist.name[0]);
+          this.errorMessage = errorOnBucketlist.name[0];
+        }
+        else {
+        console.log(error.json());
+        this.errorMessage = error.json();
+        }
       });
   }
 

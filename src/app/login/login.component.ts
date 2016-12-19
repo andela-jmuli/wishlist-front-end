@@ -10,8 +10,8 @@ import { AuthenticationService } from '../_services';
 })
 export class LoginComponent implements OnInit {
   model: any = {}
-  loading = false
-
+  errorMessage: string;
+  
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
   }
   login(){
-    this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
     .subscribe(
       data => {
         this.router.navigate(['/']);
       },
       error => {
-        this.loading = false;
+        console.log(error.json().non_field_errors);
+        this.errorMessage = error.json().non_field_errors;
       }
     )
   }
