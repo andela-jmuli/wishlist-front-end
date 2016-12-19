@@ -62,8 +62,8 @@ export class BucketlistDetailComponent implements OnInit {
         this.item_data.push(data)
       },
       error => {
-        console.log(error.json().item_name[0]);
-        this.errorMessage = error.json().item_name[0];
+        console.log(error.json());
+        this.errorMessage = error.json();
       });
   }
 

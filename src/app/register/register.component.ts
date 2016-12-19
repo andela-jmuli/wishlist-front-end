@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 export class RegisterComponent implements OnInit {
   model: any = {};
-  loading = false;
+  errorMessage: string;
 
   constructor(
     private router: Router,
@@ -18,14 +18,14 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   register(){
-    this.loading = true;
     this.userService.create(this.model)
     .subscribe(
       data => {
         this.router.navigate(['/login']);
       },
       error => {
-        this.loading = false;
+        console.log(error.json().username);
+        this.errorMessage = error.json().username;
       });
   }
 

@@ -46,6 +46,7 @@ export class ItemDetailComponent implements OnInit {
       },
       error => {
         console.log(error)
+        this.toastr.error(error);
       }
     );
   }

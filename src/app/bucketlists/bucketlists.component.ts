@@ -20,6 +20,7 @@ export class BucketlistsComponent implements OnInit {
   BucketlistId: number;
   name: string;
   buck: string;
+  current_index;
 
   // pagination items
   maxSize: number = 10;
@@ -47,8 +48,8 @@ export class BucketlistsComponent implements OnInit {
     this.bucketlistservice.create(this.model)
     .subscribe(
       data => {
-        this.router.navigate(['/bucketlists']);
-        this.buck = data;
+        this.model.name=''
+        this.model.description=''
         this.bucketlists.push(data)
       },
       error => {
@@ -70,18 +71,17 @@ export class BucketlistsComponent implements OnInit {
         console.log(data);
       },
       error => {
-        console.log(error.json()[0]);
+        console.log(error.json());
         this.errorMess = error.json()[0];
         this.toastr.error('Update Sucessful!');
       }
     );
   }
 
-  deleteBucketlist(bucketlistId){
+  deleteBucketlist(bucketlistId, index){
     this.bucketlistservice.delete_bucketlist(bucketlistId).subscribe(
-      
       data => {
-        this.router.navigate(['/']);
+        this.bucketlists.splice(index, 1);
         this.buck = data;
       },
       error => {

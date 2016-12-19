@@ -21,7 +21,7 @@
 </div>
 
 <div class="buck-body">
-            <table class="table" *ngIf="bucketlists">
+    <table class="table" *ngIf="bucketlists">
                 <tbody>
                     <tr>
    
@@ -32,7 +32,7 @@
 
         <div class="row"  *ngIf="bucketlists">
             <!--First columnn-->
-        <div class="col-md-3" *ngFor="let bucketlist of bucketlists | paginate: config; let i = index">
+        <div class="col-md-3" *ngFor="let bucketlist of bucketlists | paginate: config; let i = index" >
             <!--Card-->
             <div class="card hoverable">
 
@@ -43,7 +43,7 @@
                     <hr>
                     <!--Text-->
                     <p class="card-text">{{bucketlist.description}}</p>
-                    <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id)'>Delete</button>
+                    <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id, i)'>Delete</button>
                     <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i">Update</button>
 
                 </div>
