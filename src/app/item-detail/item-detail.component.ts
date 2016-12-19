@@ -3,7 +3,6 @@ import { Bucketlist, Items } from '../models/bucketlist'
 import { EmitterService, ItemsService } from '../_services/index';
 import {Observable} from 'rxjs/Rx';
 
-
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -13,16 +12,18 @@ export class ItemDetailComponent implements OnInit {
   @Input() item: Items;
   @Input() i: number;
   @Input() bucketlistId: number;
+  @Input() editId: string;
+
   model: any = {};
   itemName: string;
   itemId: number;
   loading = false;
   is_done: boolean;
 
-  @Input() editId: string;
-
   private itemModel = new Items();
   private editing = false;
+  
+
 
   constructor(private itemService: ItemsService) { }
 

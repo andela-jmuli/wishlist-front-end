@@ -5,7 +5,7 @@
         <div class="form-group">
             <label for="name">Bucketlist Name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
-            <div *ngIf="f.submitted && !name.valid" class="help-block">name is required</div>
+            <div *ngIf="f.submitted && !name.valid" class="help-block">A Name is required</div>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -23,9 +23,36 @@
 <div class="buck-body">
             <table class="table" *ngIf="bucketlists">
                 <tbody>
-                    <tr *ngFor="let bucketlist of bucketlists; let i = index">
-                
-                    <!-- Update Bucketlist Modal -->
+                    <tr>
+   
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="bucketlist && bucketlists.length==0"> You got no bucketlists mate!</p>
+
+        <div class="row"  *ngIf="bucketlists">
+            <!--First columnn-->
+        <div class="col-md-3" *ngFor="let bucketlist of bucketlists | paginate: config; let i = index">
+            <!--Card-->
+            <div class="card hoverable">
+
+                <!--Card content-->
+                <div class="card-block text-xs-center">
+                    <!--Title-->
+                    <h4 class="card-title"><a [routerLink]="['/bucketlists', bucketlist.id]">{{bucketlist.name}}</a></h4>
+                    <hr>
+                    <!--Text-->
+                    <p class="card-text">{{bucketlist.description}}</p>
+                    <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id)'>Delete</button>
+                    <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i">Update</button>
+
+                </div>
+                <!--/.Card content-->
+
+            </div>
+            <!--/.Card-->
+            
+            <!-- Update Bucketlist Modal -->
                     <div class="modal fade" [id]="'UpdateModal' + i" role="dialog">
                     <div class="modal-dialog" >
                     <div class="modal-content">
@@ -47,33 +74,14 @@
                     
                     </div>
                     </div>
-                </div>    
-                </tr>
-                </tbody>
-            </table>
-            <p *ngIf="bucketlist && bucketlists.length==0"> You got no bucketlists mate!</p>
+                </div> 
+        </div>
+        </div><br><br>
+        <div class="has-text-centered">
+            <pagination-controls [id]="config.id"
+                                [maxSize]="maxSize"
+                                [directionLinks]="directionLinks"
+                                (pageChange)="onPageChange($event)"></pagination-controls>
         </div>
 
-        <div class="row"  *ngIf="bucketlists">
-            <!--First columnn-->
-        <div class="col-md-3" *ngFor="let bucketlist of bucketlists; let i = index">
-            <!--Card-->
-            <div class="card hoverable">
-
-                <!--Card content-->
-                <div class="card-block text-xs-center">
-                    <!--Title-->
-                    <h4 class="card-title"><a [routerLink]="['/bucketlists', bucketlist.id]">{{bucketlist.name}}</a></h4>
-                    <hr>
-                    <!--Text-->
-                    <p class="card-text">{{bucketlist.description}}</p>
-                    <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id)'>Delete</button>
-                    <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i">Update</button>
-
-                </div>
-                <!--/.Card content-->
-
-            </div>
-            <!--/.Card-->
-        </div>
         </div>

@@ -3,6 +3,7 @@ import { BucketlistService } from '../_services/index'
 import { Router } from '@angular/router';
 import { Bucketlist } from '../models/bucketlist'
 import { NgForm } from '@angular/forms'
+import { PaginationInstance } from 'ng2-pagination';
 
 @Component({
   selector: 'app-bucketlists',
@@ -16,12 +17,26 @@ export class BucketlistsComponent implements OnInit {
   bucketlist: Bucketlist;
   errorMessage: string;
   BucketlistId: number;
-  name: string
+  name: string;
+  maxSize: number = 10;
+  directionLinks: boolean = true;
+
+  // pagination config
+  config: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 10,
+    currentPage: 1
+  };
 
   constructor(
     private router: Router,
     private bucketlistservice: BucketlistService
   ) { }
+
+
+  onPageChange(number: number){
+    this.config.currentPage = number;
+  }
 
   create_bucketlist(){
     this.loading = true;
@@ -65,4 +80,3 @@ export class BucketlistsComponent implements OnInit {
   }
 
 }
-// itemOperation = this.itemService.update_item(this.bucketlistId, this.itemId, this.model)

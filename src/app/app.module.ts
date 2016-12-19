@@ -12,13 +12,16 @@ import { AuthenticationService, UsersService, BucketlistService, ItemsService, A
 import { BucketlistsComponent } from './bucketlists/bucketlists.component';
 import { BucketlistDetailComponent } from './bucketlist-detail/bucketlist-detail.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
+import {Ng2PaginationModule} from 'ng2-pagination';
+
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent, HomeComponent, BucketlistsComponent, BucketlistDetailComponent, ItemDetailComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    Ng2PaginationModule
   ],
   providers: [AuthenticationService, AuthGuard, UsersService, BucketlistService, ItemsService],
   bootstrap: [AppComponent]
