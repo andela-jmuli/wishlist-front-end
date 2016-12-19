@@ -2,6 +2,8 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import { Bucketlist, Items } from '../models/bucketlist'
 import { EmitterService, ItemsService } from '../_services/index';
 import {Observable} from 'rxjs/Rx';
+import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 
 @Component({
@@ -13,18 +15,21 @@ export class ItemDetailComponent implements OnInit {
   @Input() item: Items;
   @Input() i: number;
   @Input() bucketlistId: number;
+  @Input() editId: string;
+
   model: any = {};
   itemName: string;
   itemId: number;
   loading = false;
   is_done: boolean;
-
-  @Input() editId: string;
+  responseItems: string
 
   private itemModel = new Items();
   private editing = false;
+  
 
-  constructor(private itemService: ItemsService) { }
+
+  constructor(private itemService: ItemsService, private router: Router, public toastr: ToastsManager) { }
 
   ngOnInit() {
     this.itemName = this.item.item_name;
@@ -32,27 +37,29 @@ export class ItemDetailComponent implements OnInit {
     this.is_done = this.item.is_done
   }
 
+
   updateItem(bucketlistId, itemId, itemName, is_done){
     
     this.itemService.update_item(this.bucketlistId, this.itemId, itemName, this.is_done).subscribe(
+      data => {
+        this.toastr.success('Item Successfully Updated!');
+      },
       error => {
         console.log(error)
       }
     );
   }
 
-  ngOnChanges(){
-    EmitterService.get(this.editId).subscribe((item: Items) =>{
-      this.model = item
-      this.editing = true;
-    });
-  }
 
   deleteItem(bucketlistId, itemId){
-    this.loading = true;
+    
     this.itemService.delete_item(bucketlistId, this.itemId).subscribe(
+      data => {
+        this.router.navigate(['/bucketlists']);
+        this.toastr.success('Item Successfully Deleted!');
+      },
       error => {
-        this.loading = false;
+        console.log(error);
       }
     );
   }

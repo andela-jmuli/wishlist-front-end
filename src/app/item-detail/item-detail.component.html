@@ -3,9 +3,9 @@
             <label>Done</label><div class="panel-body">{{is_done}}</div>
             <div class="panel-footer">
                 
-            <button class="btn btn-info" id="{{bucketlistId}}" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn btn-default btn-rounded" id="{{bucketlistId}}" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i">Update</button>
 
-            <button class="btn btn-danger" (click)="deleteItem(bucketlistId)"><span class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-danger btn-rounded" (click)="deleteItem(bucketlistId)">Delete</button>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
         <label>
         <input type="checkbox" name="is_done"  [(ngModel)]="is_done">Is Done</label>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary" (click)='updateItem(bucketlistId, itemId, item_name.value)'>Update </button>
+    <button type="submit" class="btn btn-primary" (click)='updateItem(bucketlistId, itemId, item_name.value)' data-dismiss="modal">Update </button>
     </form>
     </div>
                     

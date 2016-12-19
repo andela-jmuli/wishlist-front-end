@@ -9,7 +9,7 @@ export class UsersService {
   constructor(private http: Http) { }
 
   create(user: User){
-    return this.http.post('https://wishlistcp.herokuapp.com/auth/register/', user, this.jwt()).map((response: Response) => response.json());
+    return this.http.post('https://secret-ridge-68835.herokuapp.com/auth/register/', user, this.jwt()).map((response: Response) => response.json());
   }
 
   // helper method

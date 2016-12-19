@@ -1,11 +1,11 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Create Bucketlist</h2>
     <form name="form" (ngSubmit)="create_bucketlist()" #f="ngForm" novalidate>
-        
+        <p *ngIf="errorMessage">{{errorMessage}}</p>
         <div class="form-group">
             <label for="name">Bucketlist Name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
-            <div *ngIf="f.submitted && !name.valid" class="help-block">name is required</div>
+            <!--<div *ngIf="f.submitted && !name.valid" class="help-block">A Name is required</div> -->
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -23,40 +23,16 @@
 <div class="buck-body">
             <table class="table" *ngIf="bucketlists">
                 <tbody>
-                    <tr *ngFor="let bucketlist of bucketlists; let i = index">
-                
-                    <!-- Update Bucketlist Modal -->
-                    <div class="modal fade" [id]="'UpdateModal' + i" role="dialog">
-                    <div class="modal-dialog" >
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        
-                        </div>
-                        <div class="modal-body">
-                        <form class="form-group">
-                            <label for="recipient-name" class="form-control-label">Name:</label>
-                            <input type="text" class="form-control" [ngModel] = "bucketlist.name" name="name" #name="ngModel" required /><br><br>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" (click)='updateBucketlist(bucketlist.id, name.value)'>Update </button>
-                        
-                        </form>
-                        </div>
-                    
-                    </div>
-                    </div>
-                </div>    
-                </tr>
+                    <tr>
+   
+                    </tr>
                 </tbody>
             </table>
             <p *ngIf="bucketlist && bucketlists.length==0"> You got no bucketlists mate!</p>
-        </div>
 
         <div class="row"  *ngIf="bucketlists">
             <!--First columnn-->
-        <div class="col-md-3" *ngFor="let bucketlist of bucketlists; let i = index">
+        <div class="col-md-3" *ngFor="let bucketlist of bucketlists | paginate: config; let i = index">
             <!--Card-->
             <div class="card hoverable">
 
@@ -75,5 +51,38 @@
 
             </div>
             <!--/.Card-->
+            
+            <!-- Update Bucketlist Modal -->
+                    <div class="modal fade" [id]="'UpdateModal' + i" role="dialog">
+                    <div class="modal-dialog" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        </div>
+                        <div class="modal-body">
+                        <form class="form-group">
+                            <p *ngIf="errorMessage">{{errorMess}}</p>
+                            <label for="recipient-name" class="form-control-label">Name:</label>
+                            <input type="text" class="form-control" [ngModel] = "bucketlist.name" name="name" #name="ngModel" required /><br><br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)='updateBucketlist(bucketlist.id, name.value)' data-dismiss="modal">Update </button>
+                        
+                        </form>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div> 
         </div>
+        </div><br><br>
+        <div class="has-text-centered">
+            <pagination-controls [id]="config.id"
+                                [maxSize]="maxSize"
+                                [directionLinks]="directionLinks"
+                                (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+
         </div>

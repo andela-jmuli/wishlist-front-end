@@ -8,7 +8,7 @@ export class ItemsService {
   private dataUrl: string;
 
   constructor(private http: Http) {
-    this.dataUrl = 'https://wishlistcp.herokuapp.com/bucketlists/';
+    this.dataUrl = 'https://secret-ridge-68835.herokuapp.com/bucketlists/';
    }
 
   create_item(bucketlist_id: number, item: Items){
