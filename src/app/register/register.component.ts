@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     .subscribe(
       data => {
         this.showSuccess();
+        console.log(this.model)
         this.router.navigate(['/login']);
       },
       error => {

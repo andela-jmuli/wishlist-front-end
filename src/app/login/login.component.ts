@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error => {
-        // console.log(error.json().non_field_errors);
+        console.log(error.json());
         this.errorMessage = error.json().non_field_errors;
         this.toastr.error(error.json().non_field_errors);
       }
