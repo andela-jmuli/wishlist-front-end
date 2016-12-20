@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy');
+p,
+h1,
+h2,
+label,
+button,
+.login-header,
+a{
+    font-family: 'Poiret One', cursive;
+}
+.logo-text{
+    font-size: 4.92rem;
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+    margin-bottom: 0%;
+    margin-top: 3%;
+}
+.form-control{
+    color: white;
+}
+.view {
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.nav-links{
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-left: 35%;
+    margin-right: 35%;
+}
+#cards{
+    background-color: rgba(33, 99, 42, 0.63);
+    border-radius: 9px;
+    margin-left: 5%;
+    margin-right: 5%;
+} 
+#bucketlist-form{
+
+}
