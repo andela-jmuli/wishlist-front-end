@@ -5,7 +5,7 @@
                 
             <button class="btn btn-default btn-rounded" id="{{bucketlistId}}" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i">Update</button>
 
-            <button class="btn btn-danger btn-rounded" (click)="deleteItem(bucketlistId)">Delete</button>
+            <button class="btn btn-danger btn-rounded" (click)="deleteItem(bucketlistId, i)">Delete</button>
             </div>
         </div>
 
@@ -24,9 +24,9 @@
         <label for="recipient-name" class="form-control-label">Name:</label>
         <input type="text" class="form-control" placeholder="Enter New Item Name" (ngModel)="itemName" name="item_name" #item_name="ngModel" required><br><br>
         <label>
-        <input type="checkbox" name="is_done"  (ngModel)="is_done">Is Done</label>
+            <input type="checkbox" name="is_done"  (change)="logChange($event.target.checked)" (ngModel)="is_done">Is Done</label>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-primary" (click)='updateItem(bucketlistId, itemId, item_name.value)' data-dismiss="modal">Update </button>
+    <button type="submit" class="btn btn-primary" (click)='updateItem(bucketlistId, itemId, item_name.value, i)' data-dismiss="modal">Update </button>
     </form>
     </div>
                     

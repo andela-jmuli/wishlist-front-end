@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketlistService, ItemsService, EmitterService } from '../_services/index';
 import { Bucketlist, Items } from '../models/bucketlist'
 import { PaginationInstance } from 'ng2-pagination';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-bucketlist-detail',
@@ -15,7 +16,7 @@ export class BucketlistDetailComponent implements OnInit {
 
   model: any = {};
   loading = false;
-  item_data: Items[];
+  itemData: Items[];
   responseItems: string
   name: string;
   description: string;
@@ -35,7 +36,7 @@ export class BucketlistDetailComponent implements OnInit {
   private itemModel = new Items();
   private editing = false;
 
-  constructor(private router: ActivatedRoute, private bucketlistService: BucketlistService, private itemService: ItemsService ) { }
+  constructor(private router: ActivatedRoute, private bucketlistService: BucketlistService, private itemService: ItemsService, public toastr: ToastsManager ) { }
 
   onPageChange(number: number){
     this.config.currentPage = number;
@@ -48,7 +49,7 @@ export class BucketlistDetailComponent implements OnInit {
                 this.bucketlist = bucketlist;
                 this.name = bucketlist.name;
                 this.description = bucketlist.description;
-                this.item_data = bucketlist.bucketlist_items;  
+                this.itemData = bucketlist.bucketlist_items;  
               },           
     );
   }
@@ -59,11 +60,13 @@ export class BucketlistDetailComponent implements OnInit {
     .subscribe(
       data => {
         this.responseItems = data;
-        this.item_data.push(data)
+        this.itemData.push(data)
+        this.toastr.success('Item Created Successfully!');
       },
       error => {
         console.log(error.json());
         this.errorMessage = error.json();
+        this.toastr.error(error.json());
       });
   }
 

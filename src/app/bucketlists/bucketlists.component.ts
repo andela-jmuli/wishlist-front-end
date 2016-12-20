@@ -39,6 +39,10 @@ export class BucketlistsComponent implements OnInit {
     public toastr: ToastsManager
   ) { }
 
+  showSuccess() {
+      this.toastr.success('Bucketlist Creation Successful!');
+      }
+
   // pagination
   onPageChange(number: number){
     this.config.currentPage = number;
@@ -51,16 +55,17 @@ export class BucketlistsComponent implements OnInit {
         this.model.name=''
         this.model.description=''
         this.bucketlists.push(data)
+        this.showSuccess()
       },
       error => {
         let errorOnBucketlist = error.json();
         if (errorOnBucketlist.hasOwnProperty('name')){
-          console.log(errorOnBucketlist.name[0]);
+          this.toastr.error(errorOnBucketlist.name[0]);
           this.errorMessage = errorOnBucketlist.name[0];
         }
         else {
-        console.log(error.json());
         this.errorMessage = error.json();
+        this.toastr.error(error.json());
         }
       });
   }
@@ -69,12 +74,13 @@ export class BucketlistsComponent implements OnInit {
     this.bucketlistservice.update_bucketlist(bucketlistId, model).subscribe(
       data => {
         
-        this.bucketlists.splice(index, 1, data);   
+        this.bucketlists.splice(index, 1, data);
+        this.toastr.info('Update Sucessful!');   
       },
       error => {
         console.log(error.json());
         this.errorMess = error.json()[0];
-        this.toastr.error('Update Sucessful!');
+        this.toastr.error(error.json().name);
       }
     );
   }
@@ -84,9 +90,11 @@ export class BucketlistsComponent implements OnInit {
       data => {
         this.bucketlists.splice(index, 1); 
         this.buck = data;
+        this.toastr.success('Bucketlist Deletion Successful!');
       },
       error => {
         this.errorMessage = error.json();
+        this.toastr.error(error.json());
       }
     );
   }

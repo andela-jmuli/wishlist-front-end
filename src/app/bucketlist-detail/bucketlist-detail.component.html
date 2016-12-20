@@ -2,31 +2,33 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Name</td>
-                        <td>Description</td>
+                        <td>Bucketlist Name</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{name}}</td>
                         <td>{{description}}</td>
-                        </tr>
+                    </tr>
                 </tbody>
             </table>
 </div>
 
 <div class="panel-body">
-    <p *ngIf="item_data?.length < 1">You have no Items for this bucketlist mate!</p>
+    <p *ngIf="itemData?.length < 1">You have no Items for this bucketlist mate!</p>
     <p *ngIf="errorMessage">{{errorMessage}}</p>
-    <form (ngSubmit)="createItem(bucketlist.id)">
+    
+    <form name="form" (ngSubmit)="createItem(bucketlist.id); item_name.reset()" #f="ngForm" novalidate>
             <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="text" class="form-control" placeholder="Item Name" [(ngModel)]="model.item_name" name="item_name" #item_name="ngModel" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">Add item</button>
+            <label for="item_name">Create Item</label>
+            <input type="text" class="form-control" placeholder="Item Name" name="item_name" [(ngModel)]="model.item_name" #item_name="ngModel" required />
+            <div *ngIf="f.submitted && errorMessage" class="help-block">{{errorMessage}}</div>
+            
             </div>
-        </form>
+            <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+            </div>
+    </form>
 
     <table class="table">
         <thead>
@@ -35,9 +37,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of item_data | paginate: config; let i = index">
+            <tr *ngFor="let item of itemData | paginate: config; let i = index">
                 <td colspan="4">
-                    <app-item-detail [item]="item" [i]="i" [bucketlistId]="bucketlist.id"></app-item-detail>               
+                    <app-item-detail [item]="item" [itemData]="itemData" [i]="i" [bucketlistId]="bucketlist.id"></app-item-detail>               
                 </td>
             </tr>
         </tbody>

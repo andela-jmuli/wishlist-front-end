@@ -16,12 +16,11 @@ export class ItemDetailComponent implements OnInit {
   @Input() i: number;
   @Input() bucketlistId: number;
   @Input() editId: string;
-
+  @Input() itemData: Items[];
   model: any = {};
   itemName: string;
   itemId: number;
-  loading = false;
-  is_done: boolean;
+  is_done:any = false;
   responseItems: string
 
   private itemModel = new Items();
@@ -38,10 +37,10 @@ export class ItemDetailComponent implements OnInit {
   }
 
 
-  updateItem(bucketlistId, itemId, itemName, is_done){
-    
+  updateItem(bucketlistId, itemId, itemName, is_done, index){
     this.itemService.update_item(this.bucketlistId, this.itemId, itemName, this.is_done).subscribe(
       data => {
+        this.itemName = itemName; 
         this.toastr.success('Item Successfully Updated!');
       },
       error => {
@@ -51,16 +50,22 @@ export class ItemDetailComponent implements OnInit {
     );
   }
 
+  logChange(event){
+    this.is_done = event
+  }
 
-  deleteItem(bucketlistId, itemId){
+
+  deleteItem(bucketlistId, index, itemId){
+    // console.log(this.itemData)
     
     this.itemService.delete_item(bucketlistId, this.itemId).subscribe(
       data => {
-        this.router.navigate(['/bucketlists']);
+        this.itemData.splice(index, 1);
         this.toastr.success('Item Successfully Deleted!');
       },
       error => {
         console.log(error);
+        this.toastr.error(error);
       }
     );
   }
