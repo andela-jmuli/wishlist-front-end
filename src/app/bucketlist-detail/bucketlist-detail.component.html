@@ -1,22 +1,6 @@
-<div class="buck-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Bucketlist Name</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{name}}</td>
-                        <td>{{description}}</td>
-                    </tr>
-                </tbody>
-            </table>
-</div>
+
 
 <div class="panel-body">
-    <p *ngIf="itemData?.length < 1">You have no Items for this bucketlist mate!</p>
-    <p *ngIf="errorMessage">{{errorMessage}}</p>
     
     <form name="form" (ngSubmit)="createItem(bucketlist.id); item_name.reset()" #f="ngForm" novalidate>
             <div class="form-group">
@@ -29,6 +13,8 @@
             <button class="btn btn-primary">Submit</button>
             </div>
     </form>
+
+    <p *ngIf="itemData?.length < 1">You have no Items for this bucketlist mate!</p>
 
     <table class="table">
         <thead>
@@ -50,4 +36,5 @@
                                 [directionLinks]="directionLinks"
                                 (pageChange)="onPageChange($event)"></pagination-controls>
         </div>
+        
 </div>
