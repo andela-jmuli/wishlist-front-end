@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy');
+p,
+h1,
+h2,
+label,
+button,
+.login-header,
+a{
+    font-family: 'Poiret One', cursive;
+}
+body{
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    
+}

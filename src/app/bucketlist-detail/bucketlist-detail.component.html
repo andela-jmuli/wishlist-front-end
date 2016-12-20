@@ -1,0 +1,40 @@
+
+
+<div class="panel-body">
+    
+    <form name="form" (ngSubmit)="createItem(bucketlist.id); item_name.reset()" #f="ngForm" novalidate>
+            <div class="form-group">
+            <label for="item_name">Create Item</label>
+            <input type="text" class="form-control" placeholder="Item Name" name="item_name" [(ngModel)]="model.item_name" #item_name="ngModel" required />
+            <div *ngIf="f.submitted && errorMessage" class="help-block">{{errorMessage}}</div>
+            
+            </div>
+            <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+            </div>
+    </form>
+
+    <p *ngIf="itemData?.length < 1">You have no Items for this bucketlist mate!</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td colspan="4">Items</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of itemData | paginate: config; let i = index">
+                <td colspan="4">
+                    <app-item-detail [item]="item" [itemData]="itemData" [i]="i" [bucketlistId]="bucketlist.id"></app-item-detail>               
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="has-text-centered">
+            <pagination-controls [id]="config.id"
+                                [maxSize]="maxSize"
+                                [directionLinks]="directionLinks"
+                                (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+        
+</div>

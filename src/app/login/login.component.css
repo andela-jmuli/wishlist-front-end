@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy');
+p,
+h1,
+h2,
+label,
+button,
+.login-header,
+a{
+    font-family: 'Poiret One', cursive;
+}
+
+.logo-text{
+    font-size: 4.92rem;
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+}
+.login-header{
+    text-align: center;
+}
+.text-label{
+    font-size: 1.2rem;
+    color: black;
+}
+.form-control{
+    color: white;
+}
+#form-body{
+    background-color: rgba(0, 0, 0, 0.38);
+}
+.modal-footer{
+    text-align: center;
+    color: white;
+}
+#login-button{
+    text-align: center;
+}

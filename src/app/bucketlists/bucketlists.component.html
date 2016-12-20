@@ -1,0 +1,85 @@
+<div class="login-body">
+<div class="card-block">
+
+    <div class="text-xs-center">
+        <h3 class="logo-text"><i class="fa fa-gitlab" aria-hidden="true"></i>ishlist</h3>
+    </div>
+    
+
+<div class="col-md-6 col-md-offset-3" id="bucketlist-form">
+    <h2>Create Bucketlists</h2>
+    <form name="form" (ngSubmit)="create_bucketlist()" #f="ngForm" novalidate>
+        
+        <div class="form-group">
+            <label for="name">Bucketlist Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="model.name" #name="ngModel" required />
+            
+        </div>
+        
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="buck-body">
+    <table class="table" *ngIf="bucketlists">
+                <tbody>
+                    <tr>
+   
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="bucketlist && bucketlists.length==0"> You got no bucketlists mate!</p>
+
+        <div class="row"  *ngIf="bucketlists">
+            <!--First columnn-->
+        <div class="col-md-3" *ngFor="let bucketlist of bucketlists | paginate: config; let i = index" >
+            <!--Card-->
+            <div class="card card-block" id="cards">
+
+            <!--Title-->
+            <h4 class="card-title">Name: <a [routerLink]="['/bucketlists', bucketlist.id]">{{bucketlist.name}}</a></h4>
+            
+            <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteBucketlist(bucketlist.id, i)'>Delete</button>
+            <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateModal' + i">Update</button>
+
+            </div><br><br>
+            <!--/.Card-->
+            
+            <!-- Update Bucketlist Modal -->
+                    <div class="modal fade" [id]="'UpdateModal' + i" role="dialog">
+                    <div class="modal-dialog" >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        </div>
+                        <div class="modal-body">
+                        <form class="form-group">
+                            <label for="recipient-name" class="form-control-label">Name:</label>
+                            <input type="text" class="form-control" [ngModel] = "bucketlist.name" name="name" #name="ngModel" required /><br><br>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" (click)='updateBucketlist(bucketlist.id, name.value, i)' data-dismiss="modal">Update </button>
+                        
+                        </form>
+                        </div>
+                    
+                    </div>
+                    </div>
+                </div> 
+        </div>
+        </div><br><br>
+        <div class="has-text-centered">
+            <pagination-controls [id]="config.id"
+                                [maxSize]="maxSize"
+                                [directionLinks]="directionLinks"
+                                (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+
+        </div>
+
+</div>
+</div>
