@@ -80,7 +80,14 @@ export class BucketlistsComponent implements OnInit {
       error => {
         console.log(error.json());
         this.errorMess = error.json()[0];
-        this.toastr.error(error.json().name);
+        // this.toastr.error(error.json().name);
+         let nameError = error.json().name;
+        if (nameError){
+          this.toastr.error('You cannot send a blank name');
+        }
+        else{
+          this.toastr.error(error.json().name);
+        }
       }
     );
   }

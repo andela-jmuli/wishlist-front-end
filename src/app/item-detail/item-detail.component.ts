@@ -44,8 +44,14 @@ export class ItemDetailComponent implements OnInit {
         this.toastr.success('Item Successfully Updated!');
       },
       error => {
-        console.log(error)
-        this.toastr.error(error);
+        console.log(error.json().item_name);
+        let nameError = error.json().item_name;
+        if (nameError){
+          this.toastr.error('You cannot send a blank name');
+        }
+        else{
+          this.toastr.error(error.json().item_name);
+        }
       }
     );
   }
@@ -56,7 +62,6 @@ export class ItemDetailComponent implements OnInit {
 
 
   deleteItem(bucketlistId, index, itemId){
-    // console.log(this.itemData)
     
     this.itemService.delete_item(bucketlistId, this.itemId).subscribe(
       data => {
