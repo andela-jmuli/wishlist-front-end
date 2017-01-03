@@ -4,6 +4,7 @@ import { EmitterService, ItemsService } from '../_services/index';
 import {Observable} from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { PaginationInstance } from 'ng2-pagination';
 
 
 @Component({
@@ -26,7 +27,16 @@ export class ItemDetailComponent implements OnInit {
   private itemModel = new Items();
   private editing = false;
   
+ // pagination config
+  config: PaginationInstance = {
+    id: 'advanced',
+    itemsPerPage: 9,
+    currentPage: 1
+  };
 
+  onPageChange(number: number){
+    this.config.currentPage = number;
+  }
 
   constructor(private itemService: ItemsService, private router: Router, public toastr: ToastsManager) { }
 

@@ -23,7 +23,7 @@ export class BucketlistDetailComponent implements OnInit {
   bucketlistId: number;
   errorMessage: string;
 
-  maxSize: number = 10;
+  maxSize: number = 9;
   directionLinks: boolean = true;
 
   // pagination config

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy|Raleway');
+p,
+h1,
+h2,
+label,
+button,
+.login-header,
+a{
+    font-family: 'Poiret One', cursive;
+}
+
+.panel{
+    width: 50%;
+    text-align: center;
+}
+#cards{
+    background-color: rgba(33, 99, 42, 0.63);
+    border-radius: 9px;
+    margin-left: 5%;
+    margin-right: 5%;
+} 

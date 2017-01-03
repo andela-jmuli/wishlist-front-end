@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy|Raleway');
 p,
 h1,
 h2,
@@ -8,7 +8,7 @@ button,
 a{
     font-family: 'Poiret One', cursive;
 }
-.logo-text{
+#logo-text{
     font-size: 4.92rem;
     text-align: center;
     font-family: 'Satisfy', cursive;
@@ -17,7 +17,8 @@ a{
     text-align: center;
 }
 .form-control{
-    color: white;
+    color: black;
+    font-family: 'Raleway', sans-serif;
 }
 #form-body{
     background-color: rgba(0, 0, 0, 0.38);
