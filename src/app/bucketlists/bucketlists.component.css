@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy|Raleway');
 p,
 h1,
 h2,
@@ -16,7 +16,8 @@ a{
     margin-top: 3%;
 }
 .form-control{
-    color: white;
+    color: black;
+    font-family: 'Raleway', sans-serif;
 }
 .view {
     text-align: center;
@@ -34,6 +35,63 @@ a{
     margin-left: 5%;
     margin-right: 5%;
 } 
-#bucketlist-form{
+.menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(33, 99, 42, 0.63);
+  width: 250px;
+  box-sizing: border-box;
+  transition: all 250ms;
+  -webkit-transform: translateZ(0) translateX(-100%);
+  transform: translateZ(0) translateX(-100%);
+  text-align:center;
+  box-shadow: 0 0 10px #000;
+}
 
+.active{
+  transform: translateZ(0) translateX(0);
+  transform: translateZ(0) translateX(0);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+a{
+  text-decoration:none;
+  padding:10px 15px;
+  font-weight: 300;
+}
+
+.content{
+  position:relative;
+  width:400px;
+}
+.nav-button{
+  width:150px;
+  height:50px;
+  margin:70px 97px;
+  padding: 10px;
+  cursor:pointer;
+}
+.line{
+	width: 40px;
+	height: 2px;
+  background-color:#fff;
+	transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+}
+.line.first{
+  transform: translateX(-10px) translateY(22px) rotate(-90deg);
+}
+.line.second{
+  transform: translateX(-10px) translateY(19px) rotate(0deg);
+}
+.nav-button.on .line.top{
+	width: 40px;
+	transform: translateX(-10px) translateY(20px) rotate(45deg);
+}
+.nav-button.on .line.bottom{
+	width: 40px;
+	transform: translateX(-10px) translateY(17px)rotate(-45deg);
 }

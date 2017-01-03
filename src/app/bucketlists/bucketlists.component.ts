@@ -52,6 +52,7 @@ export class BucketlistsComponent implements OnInit {
     this.bucketlistservice.create(this.model)
     .subscribe(
       data => {
+        console.log(data)
         this.model.name=''
         this.model.description=''
         this.bucketlists.push(data)

@@ -1,14 +1,16 @@
-<div class="panel panel-default">
-            <label>Name</label><div class="panel-heading">{{itemName}}</div>
-            <label>Done</label><div class="panel-body">{{is_done}}</div>
-            <div class="panel-footer">
-                
-            <button class="btn btn-default btn-rounded" id="{{bucketlistId}}" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i">Update</button>
 
-            <button class="btn btn-danger btn-rounded" (click)="deleteItem(bucketlistId, i)">Delete</button>
-            </div>
-        </div>
+<!--Card-->
+           <div class="card card-block" id="cards"> 
 
+            <!--Title-->
+            <h4 class="card-title">Name: {{itemName}} </h4>
+            <h4 class="card-title">Status: {{is_done}} </h4>
+            <button [disabled]="loading" class="btn btn-danger btn-rounded" (click)='deleteItem(bucketlistId, i)'>Delete</button>
+            <button class="btn btn-default btn-rounded" data-toggle="modal" [attr.data-target]="'#UpdateItemModal' + i">Update</button>
+
+            </div><br><br> 
+            
+<!--/.Card-->
         <!-- Update item modal -->
 <div class="modal fade" [id]="'UpdateItemModal' + i" role="dialog">
     <div class="modal-dialog">
@@ -33,6 +35,4 @@
     </div>
     </div>
     </div>
-                
-
-      
+            

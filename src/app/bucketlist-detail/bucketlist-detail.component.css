@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Satisfy|Raleway');
+p,
+h1,
+h2,
+button,
+.login-header,
+a{
+    font-family: 'Poiret One', cursive;
+}
+
+.panel{
+    width: 35%;
+}
+.item{
+    width: 30%;
+    display: inline-block;
+}
+#page{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20%;
+    color: white;
+}
+.form-control{
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}
+#form-body{
+    background-color: rgba(0, 0, 0, 0.38);
+    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-left: 25%;
+    width: 50%;
+    text-align: center;
+}
+.label-names{
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    font-size: 1.8rem;
+}
